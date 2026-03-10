@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ICT Faculty Mahidol University on Longdo Map (Non-Interactive)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYKEA</title>
+    <!----------- CDN Bootstrap --------->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!---------CDN Bootstrap ICON-------->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!----need to put CSS Link on the Bottom of BootStrap link to edit the Boostrap---->
+    <!-- --------- CSS ---------------->
+    <link rel="stylesheet" href="/front-end/css/style.css">
+
+    <style>
+        #map-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        #mapid {
+            height: 100%;
+            width: 100%;
+        }
+
+        #address-overlay {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: sans-serif;
+            font-size: 14px;
+            color: #333;
+            z-index: 1000;
+            max-width: 80%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="container-fluid" onload="initMap()">
+        <!--Nav-->
+        <nav class="row navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <!-------------Logo-------------->
+                <a class="navbar-brand" style="font-size: 40px;" href="/HomePage">
+                    <img src="front-end/asset/images/image1.png" alt="Logo" style="border-radius: 50px;" width="70" height="60" class="d-inline-block align-text-top">
+                    MYKEA
+                </a>
+                <!------UL When Screen is Big---->
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav  ms-5 me-auto mb-2 mb-lg-0" style ="display: flex; justify-content: space-between; font-size: 20px;">
+                        <li class="nav-item me-3 ">
+                            <a class="nav-link active" aria-current="page" href="/HomePage">Home</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="/SearchPage">Shopping</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact-Us">Contact-Us</a>
+                        </li>
+                    </ul>
+                </div>
+                 <!------------Login-------------->
+                 <form class="d-flex ms-auto me-5" role="search" style="display:flex; align-items: center;">
+                    <a href="/Login" class="nav-link me-3 login-text" style="font-size: 20px;">Login/Signup</a>
+                    <a href="/Login" ><img src="front-end/asset/images/free-user-icon-3296-thumb.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top"></a>
+                </form>
+                <!---------Dropdown when page is small-------->
+                <button class="navbar-toggler me-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler01" aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!---------UL when screen is small-------------->
+                <div class="collapse navbar-collapse" id="navbarToggler01">
+                        <ul class="navbar-nav ms-4" style ="display: flex; font-size: 20px;">
+                            <li class="nav-item mt-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-house-fill me-2"></i>
+                                    <a class="nav-link active" href="/HomePage">Home</a>
+                                </div>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-bag-fill me-2"></i>
+                                    <a class="nav-link" href="/SearchPage">Shopping</a>
+                                </div>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-currency-exchange me-2"></i>
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </div>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-person-vcard-fill me-2"></i>
+                                    <a class="nav-link" href="/Contact-Us">Contact-Us</a>
+                                </div>
+                            </li>
+                        </ul>
+                </div>
+
+            </div>
+        </nav>
+ 
+    <div id="map-container" class="mt-2">
+        <div id="mapid"></div>
+        <div id="address-overlay">
+            <b>อิเกีย บางนา (IKEA BANGNA)</b><br>38, Mega Bangna, Moo. 6, Bang Kaeo, Bang Phli, Samut Prakan 10540 Thailand
+        </div>
+    </div>
+    <div class="container-fluid my-5">
+        <h1 style="text-align: center;">Contact Us</h1>
+        <p style="text-align: center;">
+            <b>TEL:</b> 02-708-7999
+            <br><br>
+            Service fees are as determined by the service provider.
+            <br><br>
+            <b>Monday - Sunday 10:00 AM - 10:00 PM</b>
+            <br><br>
+            Because you may need help at any time, day or night, just email us and we will reply as soon as possible.
+            <br>
+            <b>Email:</b>
+            <a href="#" style="color:#333">customerrelations.ikeath@ikano.asia</a>
+        </p>
+        
+    </div>
+    <!-----------Footer---------------->
+    <footer class="container-fluid mt-auto py-3" style="background-color: rgb(215, 215, 215);">
+        <div class="row">
+             <div class="col-md-6 d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
+                <p style="font-size: 40px; margin-bottom: 0; margin-right: 1.5rem !important;">MYKEA</p>
+                <ul class="d-flex list-unstyled mb-0">
+                    <li class="me-3"><a href="#" title="YouTube"><i class="footer-link bi bi-youtube fs-4"></i></a></li>
+                    <li class="me-3"><a href="#" title="Facebook"><i class="footer-link bi bi-facebook fs-4"></i></a></li>
+                    <li class="me-3"><a href="#" title="Twitter"><i class="footer-link bi bi-twitter-x fs-4"></i></a></li>
+                    <li class="me-3"><a href="#" title="Instagram"><i class="footer-link bi bi-instagram fs-4"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 d-flex flex-column flex-md-row align-items-center justify-content-md-end text-center text-md-start">
+                 <span class="me-md-3 mb-2 mb-md-0">CompanyName @202X. All rights reserved.</span>
+                 <div class="vr"></div>
+                 <ul class="d-flex list-unstyled mb-0 flex-wrap justify-content-center">
+                    <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="#">Privacy notice</a></li>
+                    <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="#">Cookie Privacy</a></li>
+                    <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="/OurTeam">Our Teams</a></li>
+                    <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="#">Terms of purchase</a></li>
+                 </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <!----JAVASCRIPT FOR Longdo map API--->
+    <script type="text/javascript" src="https://api.longdo.com/map/?key=743e222bd4f0d7f5bd6c908bf081b01f"></script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        var map;
+
+        function initMap() {
+            const ictMahidolCoords = { lon: 100.679966, lat: 13.644922 };
+            const initialZoom = 17;
+
+            map = new longdo.Map({
+                placeholder: document.getElementById('mapid'),
+                lastView: false,
+                zoom: initialZoom,
+                location: ictMahidolCoords,
+                drag: false,
+                zoomable: false
+            });
+
+            if (map.Ui) {
+                if (map.Ui.Zoombar) map.Ui.Zoombar.visible(true);
+                if (map.Ui.DPad) map.Ui.DPad.visible(false);
+                if (map.Ui.Toolbar) map.Ui.Toolbar.visible(false);
+                if (map.Ui.LayerSelector) map.Ui.LayerSelector.visible(false);
+                if (map.Ui.Fullscreen) map.Ui.Fullscreen.visible(false);
+                if (map.Ui.Scale) map.Ui.Scale.visible(false);
+                if (map.Ui.Mouse) map.Ui.Mouse.enable(false);
+                if (map.Ui.Keyboard) map.Ui.Keyboard.enable(false);
+                if (map.Ui.Geolocation) map.Ui.Geolocation.visible(false);
+                if (map.Ui.Search) map.Ui.Search.visible(false);
+                if (map.Ui.Crosshair) map.Ui.Crosshair.visible(false);
+            }
+
+            var marker = new longdo.Marker({ lon: 100.679966, lat: 13.644922 });
+            map.Overlays.add(marker);
+
+            marker.bindPopup('<b>อิเกีย บางนา (IKEA BANGNA)</b><br>38, Mega Bangna, Moo. 6, Bang Kaeo, Bang Phli, Samut Prakan 10540 Thailand');
+        }
+    </script>
+
+</body>
+</html>

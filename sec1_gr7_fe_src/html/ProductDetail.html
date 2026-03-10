@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MYKEA - Product Detail</title>
+        <!----------- Bootstrap --------->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!---------CDN Bootstrap ICON-------->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- --------- CSS for NAV ---------------->
+        <link rel="stylesheet" href="/front-end/css/style.css">
+        <!----------- CSS --------->
+        <link rel="stylesheet" href="/front-end/css/ProductDetail.css">
+        <link rel="stylesheet" href="/front-end/css/style.css">
+        <style>
+            /* Additional CSS for thumbnail layout */
+            .product-images {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .thumbnails {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 90px;
+            }
+            
+            .thumbnail {
+                width: 80px;
+                height: 80px;
+                cursor: pointer;
+                border: 2px solid transparent;
+                transition: border-color 0.2s;
+            }
+            
+            .thumbnail.active {
+                border-color: #0d6efd;
+            }
+            
+            .thumbnail img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .main-image {
+                flex-grow: 1;
+            }
+            
+            .main-image img {
+                width: 100%;
+                height: auto;
+                max-height: 500px;
+                object-fit: contain;
+            }
+            
+            @media (max-width: 768px) {
+                .product-images {
+                    flex-direction: column-reverse;
+                }
+                
+                .thumbnails {
+                    flex-direction: row;
+                    width: 100%;
+                    overflow-x: auto;
+                }
+            }
+        </style>
+    </head>
+    <body class="container-fluid">
+       <!--Nav-->
+       <nav class="row navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-------------Logo-------------->
+            <a class="navbar-brand" style="font-size: 40px;" href="/HomePage">
+                <img src="front-end/asset/images/image1.png" alt="Logo" style="border-radius: 50px;" width="70" height="60" class="d-inline-block align-text-top">
+                MYKEA
+            </a>
+            <!------UL When Screen is Big---->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav  ms-5 me-auto mb-2 mb-lg-0" style ="display: flex; justify-content: space-between; font-size: 20px;">
+                    <li class="nav-item me-3 ">
+                        <a class="nav-link active" aria-current="page" href="/HomePage">Home</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="/SearchPage">Shopping</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Contact-Us">Contact-Us</a>
+                    </li>
+                </ul>
+            </div>
+             <!------------Login-------------->
+             <form class="d-flex ms-auto me-5" role="search" style="display:flex; align-items: center;">
+                <a href="/Login" class="nav-link me-3 login-text" style="font-size: 20px;">Login/Signup</a>
+                <a href="/Login" ><img src="front-end/asset/images/free-user-icon-3296-thumb.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top"></a>
+            </form>
+            <!---------Dropdown when page is small-------->
+            <button class="navbar-toggler me-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler01" aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!---------UL when screen is small-------------->
+            <div class="collapse navbar-collapse" id="navbarToggler01">
+                    <ul class="navbar-nav ms-4" style ="display: flex; font-size: 20px;">
+                        <li class="nav-item mt-3">
+                            <div class="d-flex">
+                                <i class="bi bi-house-fill me-2"></i>
+                                <a class="nav-link active" href="/HomePage">Home</a>
+                            </div>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <div class="d-flex">
+                                <i class="bi bi-bag-fill me-2"></i>
+                                <a class="nav-link" href="/SearchPage">Shopping</a>
+                            </div>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <div class="d-flex">
+                                <i class="bi bi-currency-exchange me-2"></i>
+                                <a class="nav-link" href="#">Pricing</a>
+                            </div>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <div class="d-flex">
+                                <i class="bi bi-person-vcard-fill me-2"></i>
+                                <a class="nav-link" href="/Contact-Us">Contact-Us</a>
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+
+        </div>
+    </nav>
+        
+        <!-- Main -->
+        <div class="content-wrapper d-flex justify-content-center">
+            <div class="container">
+                <a href="/SearchPage" class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </a>
+                
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="product-images">
+                            <div class="thumbnails">
+                                <div class="thumbnail">
+                                    <img src="" id="sideProductImage" alt="Product thumbnail 1">
+                                </div>
+                                <div class="thumbnail">
+                                    <img src="" id="sideProductImage" alt="Product thumbnail 2">
+                                </div>
+                                <div class="thumbnail">
+                                    <img src="" id="sideProductImage" alt="Product thumbnail 3">
+                                </div>
+                                <div class="thumbnail">
+                                    <img src="" id="sideProductImage" alt="Product thumbnail 4">
+                                </div>
+                                <div class="thumbnail">
+                                    <img src="" id="sideProductImage" alt="Product thumbnail 5">
+                                </div>
+                            </div>
+                            <div class="main-image">
+                                <img id="mainProductImage" src="" alt="Main product image">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <div class="product-info">
+                            <h1 class="product-title"></h1>
+                            <div class="product-price"><i class="bi bi-currency-dollar"></i></div>
+                            
+                            <p class="product-description">
+                                A clean design with solid wood veneer. Adjust the bed sides and place the mattress at the height that suits you best. The space under the bed can be utilized with our MALM underbed storage boxes.
+                            </p>
+                            
+                            <button class="btn btn-primary mb-4">Add to Cart</button>
+                            
+                            <div class="product-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">Size:</div>
+                                    <div class="detail-value">XXXX</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Material:</div>
+                                    <div class="detail-value">XXXX</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Color:</div>
+                                    <div class="detail-value">XXXX</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-----------Footer---------------->
+        <footer class="container-fluid" style="background-color: rgb(215, 215, 215);">
+            <div class="row">
+                 <div class="col-md-6 d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
+                    <p style="font-size: 40px; margin-bottom: 0; margin-right: 1.5rem !important;">MYKEA</p>
+                    <ul class="d-flex list-unstyled mb-0">
+                        <li class="me-3"><a href="#" title="YouTube"><i class="footer-link bi bi-youtube fs-4"></i></a></li>
+                        <li class="me-3"><a href="#" title="Facebook"><i class="footer-link bi bi-facebook fs-4"></i></a></li>
+                        <li class="me-3"><a href="#" title="Twitter"><i class="footer-link bi bi-twitter-x fs-4"></i></a></li>
+                        <li class="me-3"><a href="#" title="Instagram"><i class="footer-link bi bi-instagram fs-4"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 d-flex flex-column flex-md-row align-items-center justify-content-md-end text-center text-md-start">
+                     <span class="me-md-3 mb-2 mb-md-0">CompanyName @202X. All rights reserved.</span>
+                     <div class="vr"></div>
+                     <ul class="d-flex list-unstyled mb-0 flex-wrap justify-content-center">
+                        <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="#">Privacy notice</a></li>
+                        <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="#">Cookie Privacy</a></li>
+                        <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="/OurTeam">Our Teams</a></li>
+                        <li class="ms-2"><a style="color:rgb(46, 46, 46)" class="footer-link"  href="#">Terms of purchase</a></li>
+                     </ul>
+                </div>
+            </div>
+        </footer>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script src="/front-end/js/script.js"></script>
+        <script>
+            //to make sure this code runs after the HTML document is fully loaded 
+            document.addEventListener('DOMContentLoaded', () => {
+
+                // Create a URLSearchParams object from the query string part of the URL
+                const queryParams = new URLSearchParams(window.location.search);
+                // Get the value of the 'productCode' parameter
+                const productCode = queryParams.get('productCode');
+                // Construct the URL for your API endpoint
+                const apiUrl = `/product/${productCode}`; // Use the extracted code
+
+                const product_title = document.querySelector('.product-title');
+                const product_price = document.querySelector('.product-price');
+                const main_image = document.querySelector('#mainProductImage');
+                const thumbnailDivs = document.querySelectorAll('.thumbnail');
+                const thumbnailImgs = document.querySelectorAll('#sideProductImage');
+                // Check if the container element actually exists on the page
+                if ( !product_title || !product_price || !main_image) {
+                    console.error('Error: Could not find the element with class "main_image, product_title or product_price"');
+                    return; // Stop execution if the container isn't found
+                }
+
+                //Fetch the product data from /product/:
+                fetch(apiUrl) 
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errData => {
+                            throw new Error(`API Error (${response.status}): ${errData.message || 'Failed to fetch product data'}`);
+                        }).catch(() => {
+                            throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+                        });
+                    }
+                    // If response is OK, parse the JSON body
+                    return response.json();
+                })
+                .then(apiResponse => {
+                    const productsData = apiResponse.data;
+                    //if want to access values inside json need to access via array
+                    const products = productsData[0]
+                    product_title.innerHTML = '';
+                    product_price.innerHTML = '';
+                    main_image.src = "";
+                    //Check if products were returned
+                    if (products) {
+                            product_title.innerHTML = products.title;
+                            product_price.innerHTML = `${products.price} <i class="bi bi-currency-dollar"></i>`;
+                            main_image.src = products.imageurl; 
+                           for (let i = 0; i< thumbnailImgs.length; i++){
+                            thumbnailImgs[i].src = products.imageurl;
+                           }
+                           thumbnailDivs.forEach(thumbnailDiv => {
+                                thumbnailDiv.addEventListener('click', () => {
+                                    thumbnailDivs.forEach(div => div.classList.remove('active'));
+                                    thumbnailDiv.classList.add('active');
+                                });
+                            });
+                    } else {
+                        console.error('Error: Could not find the element with class "main_image, product_title or product_price"');
+                    }
+                })
+                .catch(error => {
+                    // 8. Handle errors during the fetch or processing
+                    console.error('Error loading products:', error);
+                });
+                
+            }); // End of DOMContentLoaded listener
+
+                        
+            </script>
+    </body>
+    </html>
+    
