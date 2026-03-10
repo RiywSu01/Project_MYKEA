@@ -36,7 +36,7 @@ This project includes:
 
 **Install Dependencies:** : Open a terminal in the directory and run:
 ```sh
-npm install dotenv express jsdom mysql2 nodemon swiper
+npm install
 ```
 
 ## How to Run
