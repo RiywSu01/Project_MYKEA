@@ -20,8 +20,7 @@ This project includes:
 *   **Contact-us Page:** Information about our company. ([`/html/Contact-Us.html`](http://localhost:3000/Contact-Us)).
 *   **Backend API:** Handles requests for data (login, products, images) using Node.js and Express (app.js)
 
-*   **Database:** Uses SQL database to store the data. (sec1_gr7_database.sql)
-
+*   **Database:** Uses SQL database to store the data.
 
 ## Librarys and Service Used
 
